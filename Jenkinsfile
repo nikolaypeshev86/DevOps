@@ -39,10 +39,11 @@ pipeline {
                     workspace = env.WORKSPACE
                     echo "Current workspace is ${env.WORKSPACE}"
                     echo "building the docker image..."
+                    dockerfile = "${env.WORKSPACE}" + "/Dockerfile"
                     withCredentials([usernamePassword(credentialsId: 'nexus-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                         sh "echo $PASS | docker login -u $USER --password-stdin ${ECR_REPO_URL}"
                         sh "pwd "
-                        sh "docker build -f $WORKSPACE\Dockerfile -t ${IMAGE_REPO}:${IMAGE_NAME} ."
+                        sh "docker build -f $dockerfile -t ${IMAGE_REPO}:${IMAGE_NAME} ."
                         sh "docker push ${IMAGE_REPO}:${IMAGE_NAME}"
                     }
                 }
