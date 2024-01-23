@@ -60,7 +60,7 @@ pipeline {
                     sh 'envsubst < kubernetes/deployment.yaml | kubectl apply -f -'
                     sh 'envsubst < kubernetes/service.yaml | kubectl apply -f -'
                 }
-        //    }
+          }
         }
         stage('commit version update') {
             steps {
