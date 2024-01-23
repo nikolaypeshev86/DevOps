@@ -28,6 +28,7 @@ pipeline {
             steps {
                script {
                    echo "building the application..."
+                   sh 'kubectl cluster-info'
                    sh 'mvn clean package'
                }
             }
