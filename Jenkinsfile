@@ -42,8 +42,8 @@ pipeline {
                     dockerfile = "${env.WORKSPACE}" + "/Dockerfile"
                     withCredentials([usernamePassword(credentialsId: 'nexus-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                         sh "echo $PASS | docker login -u $USER --password-stdin ${ECR_REPO_URL}"
-                        sh "pwd "
-                        sh "docker build -f $dockerfile -t ${IMAGE_REPO}:${IMAGE_NAME} ."
+                        sh "ls"
+                        sh "docker build -f $dockerfile -t ${IMAGE_REPO}:${IMAGE_NAME}"
                         sh "docker push ${IMAGE_REPO}:${IMAGE_NAME}"
                     }
                 }
