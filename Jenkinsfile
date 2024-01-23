@@ -55,6 +55,7 @@ pipeline {
            steps {
                 script {
                    echo 'deploying docker image...'
+                   echo '$APP_NAME and $IMAGE_REPO:$IMAGE_NAME'
                     sh 'envsubst < kubernetes/deployment.yaml | kubectl apply -f -'
                     sh 'envsubst < kubernetes/service.yaml | kubectl apply -f -'
                 }
