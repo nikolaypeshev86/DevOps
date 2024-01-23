@@ -28,7 +28,6 @@ pipeline {
             steps {
                script {
                    echo "building the application..."
-                   sh 'kubectl cluster-info'
                    sh 'mvn clean package'
                }
             }
@@ -59,6 +58,8 @@ pipeline {
                    echo "$APP_NAME and $IMAGE_REPO:$IMAGE_NAME" 
                     sh 'envsubst < kubernetes/deployment.yaml | kubectl apply -f -'
                     sh 'envsubst < kubernetes/service.yaml | kubectl apply -f -'
+                    sh 'kubectl get all'
+                    sh 'kubectl cluster-info'
                 }
           }
         }
@@ -66,8 +67,6 @@ pipeline {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'github-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                        sh 'git config user.email "jenkins@example.com"'
-                        sh 'git config user.name "Jenkins"'
                         sh "git remote set-url origin https://${USER}:${PASS}@github.com/nikolaypeshev86/DevOps.git"
                         sh 'git add .'
                         sh 'git commit -m "ci: version bump"'
