@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    tools {
+        nodejs 'node'
+    }
     environment {
         DOCKER_IMAGE_NAME = 'nodejs-app:1.0'
         NEXUS_REPO_URL = '172.20.4.14:9093'
