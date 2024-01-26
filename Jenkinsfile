@@ -3,9 +3,9 @@ pipeline {
 
     environment {
         NODE_VERSION = '14'
-        DOCKER_IMAGE_NAME = 'your-docker-image-name'
-        NEXUS_REPO_URL = 'http://your-nexus-repo-url'
-        NEXUS_REPO_CREDENTIALS = credentials('nexus-credentials-id')
+        DOCKER_IMAGE_NAME = 'nodejs-app:1.0'
+        NEXUS_REPO_URL = '172.20.4.14:9093'
+        NEXUS_REPO_CREDENTIALS = credentials('nexus-credentials')
     }
 
     stages {
