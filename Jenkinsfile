@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        NODE_VERSION = '14'
+        NODE_VERSION = '16'
         DOCKER_IMAGE_NAME = 'nodejs-app:1.0'
         NEXUS_REPO_URL = '172.20.4.14:9093'
         NEXUS_REPO_CREDENTIALS = credentials('nexus-credentials')
