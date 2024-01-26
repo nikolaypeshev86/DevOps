@@ -47,7 +47,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    sh "docker run -p 8080:3000 ${NEXUS_REPO_URL}/${DOCKER_IMAGE_NAME}"
+                    sh "docker run -p 8088:3000 ${NEXUS_REPO_URL}/${DOCKER_IMAGE_NAME}"
                 }
             }
         }
