@@ -16,7 +16,7 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
+        stage('Test Build') {
             steps {
                 script {
                    // sh "npm test"
@@ -51,12 +51,6 @@ pipeline {
                     sh "docker run -p 8080:3000 ${NEXUS_REPO_URL}/${DOCKER_IMAGE_NAME}"
                 }
             }
-        }
-    }
-
-    post {
-        always {
-            cleanWs()
         }
     }
 }
