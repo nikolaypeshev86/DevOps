@@ -6,7 +6,7 @@ pipeline {
         maven 'Maven'
     }
     environment {
-        ECR_REPO_URL = '172.20.4.39:9093'
+        ECR_REPO_URL = '172.20.4.14:9093'
         IMAGE_REPO = "${ECR_REPO_URL}/java-maven-app"
     }
     stages {
