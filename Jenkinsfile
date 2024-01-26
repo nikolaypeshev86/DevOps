@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        NODE_VERSION = '16'
         DOCKER_IMAGE_NAME = 'nodejs-app:1.0'
         NEXUS_REPO_URL = '172.20.4.14:9093'
         NEXUS_REPO_CREDENTIALS = credentials('nexus-credentials')
@@ -15,20 +14,11 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                script {
-                  //  sh "curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash -"
-                    sh "apt-get install -y nodejs"
-                    sh "npm install"
-                }
-            }
-        }
-
         stage('Run Tests') {
             steps {
                 script {
                     sh "npm test"
+                    sh "npm install"
                 }
             }
         }
