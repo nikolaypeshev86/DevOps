@@ -18,7 +18,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 script {
-                    sh "curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash -"
+                  //  sh "curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash -"
                     sh "apt-get install -y nodejs"
                     sh "npm install"
                 }
