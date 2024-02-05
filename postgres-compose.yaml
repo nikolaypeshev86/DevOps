@@ -1,0 +1,16 @@
+services: 
+  postgresql:
+    image: postgres:14
+    volumes:
+      - postgres_vol:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_PASSWORD=adminpostgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=digicode
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "digicode", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
